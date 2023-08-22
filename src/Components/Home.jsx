@@ -6,7 +6,51 @@ import Recommended from "./Recommended";
 import NewDisneyPlus from "./NewDisneyPlus";
 import Originals from "./Originals";
 import Trending from "./Trending";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import db from "../firebase";
+import { setMovies } from "../features/movie/movieSlice";
+import { selectUserName } from "../features/users/userSlice";
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userName = useSelector(selectUserName);
+  let recommended = [];
+  let newDisneyPLus = [];
+  let originals = [];
+  let trending = [];
+  useEffect(() => {
+    db.collection("movies").onSnapshot((snapshot) => {
+      // docs are the list of documents in the collections
+      snapshot.docs.map((doc) => {
+        // here the type field of each doc is selected
+        switch (doc.data().type) {
+          case "recommend":
+            recommended = [...recommended, { id: doc.id, ...doc.data() }];
+            break;
+          case "new":
+            newDisneyPLus = [...newDisneyPLus, { id: doc.id, ...doc.data() }];
+            break;
+          case "trending":
+            trending = [...trending, { id: doc.id, ...doc.data() }];
+            break;
+          case "original":
+            originals = [...originals, { id: doc.id, ...doc.data() }];
+            break;
+        }
+      });
+    });
+    dispatch(
+      setMovies({
+        recommended: recommended,
+        newDisneyPLus: newDisneyPLus,
+        originals: originals,
+        trending: trending,
+      })
+    );
+  }, [userName]);
   return (
     <Container>
       <ImgSlider />
