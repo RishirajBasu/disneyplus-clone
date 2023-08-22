@@ -69,11 +69,11 @@ const Carousel = styled(Slider)`
   }
   /* pushes the slider buttons to extreme left */
   .slick-prev {
-    left: -75px;
+    left: -50px;
   }
   /* pushes the slider buttons to extreme right */
   .slick-next {
-    right: -75px;
+    right: -50px;
   }
 `;
 const Wrap = styled.div`

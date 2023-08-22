@@ -2,11 +2,19 @@ import React from "react";
 import { styled } from "styled-components";
 import ImgSlider from "./ui/ImgSlider";
 import Viewers from "./Viewers";
+import Recommended from "./Recommended";
+import NewDisneyPlus from "./NewDisneyPlus";
+import Originals from "./Originals";
+import Trending from "./Trending";
 const Home = () => {
   return (
     <Container>
       <ImgSlider />
       <Viewers />
+      <Recommended />
+      <NewDisneyPlus />
+      <Originals />
+      <Trending />
     </Container>
   );
 };
