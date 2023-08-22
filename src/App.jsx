@@ -11,8 +11,8 @@ function App() {
           {/* we add global components here outside of the Routes */}
           <Header />
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>

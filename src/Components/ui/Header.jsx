@@ -34,7 +34,7 @@ const Header = (props) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        navigate("/");
+        navigate("/home");
       }
     });
   }, [userName]);
@@ -59,13 +59,13 @@ const Header = (props) => {
         .signOut()
         .then(() => {
           dispatch(setSignOutState());
-          navigate("/login");
+          navigate("/");
         })
         .catch((err) => {
           console.log("Error in logout", err);
         });
     } else {
-      navigate("/login");
+      navigate("/");
     }
   };
 
@@ -121,7 +121,12 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  background-color: #090b13ee;
+  background: rgb(4, 7, 20);
+  background: linear-gradient(
+    0deg,
+    rgba(4, 7, 20, 0.6280637254901961) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   height: 70px;
   display: flex;
   justify-content: space-between;
@@ -143,6 +148,12 @@ const Logo = styled.a`
   }
 `;
 const NavMenu = styled.div`
+  background: rgb(4, 7, 20);
+  background: linear-gradient(
+    0deg,
+    rgba(4, 7, 20, 0.6280637254901961) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
@@ -235,7 +246,12 @@ const DropDown = styled.div`
   position: absolute;
   top: 48px;
   right: 0px;
-  background: rgb(19, 19, 19);
+  background: rgb(4, 7, 20);
+  background: linear-gradient(
+    0deg,
+    rgba(4, 7, 20, 0.6280637254901961) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border: 1px solid rgba(151, 151, 151, 0.34);
   border-radius: 5px;
   box-shadow: rgb(0 0 0/ 50%) 0px 0px 18px 0px;
