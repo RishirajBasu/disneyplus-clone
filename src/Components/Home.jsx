@@ -28,6 +28,7 @@ const Home = () => {
         // here the type field of each doc is selected
         switch (doc.data().type) {
           case "recommend":
+            // here we cannot use the push() array method as the we cannot mutate parent states which are getting reflected on the UI in react
             recommended = [...recommended, { id: doc.id, ...doc.data() }];
             break;
           case "new":
