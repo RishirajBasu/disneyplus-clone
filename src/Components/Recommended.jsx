@@ -1,31 +1,25 @@
 import React from "react";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectRecommended } from "../features/movie/movieSlice";
+
 const Recommended = () => {
+  const movies = useSelector(selectRecommended);
   return (
     <Container>
       <h4>Recommended for You</h4>
       <Content>
-        <Wrap>
-          <Link to="/home">
-            <img src="/images/slider-badging.jpg" alt="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/home">
-            <img src="/images/slider-scales.jpg" alt="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/home">
-            <img src="/images/slider-scale.jpg" alt="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/home">
-            <img src="/images/slider-badag.jpg" alt="" />
-          </Link>
-        </Wrap>
+        {movies &&
+          movies.map((movie, key) => (
+            <Wrap key={key}>
+              {movie.title}
+              <Link to={`/detail/` + movie.id}>
+                <img src={movie.cardImg} alt={movie.title} />
+                {/* <p>{movie.description}</p> */}
+              </Link>
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
@@ -59,9 +53,16 @@ const Wrap = styled.div`
     opacity: 1;
     position: absolute;
     transition: opacity 500ms ease-in-out 0s;
-    z-index: 10000;
+    z-index: 1000;
     top: 0px;
   }
+  /* p {
+    height: 10%;
+    width: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
+    opacity: 0;
+  } */
   &:hover {
     box-shadow: rgb(0 0 0 /69%) 0px 26px 30px -10px,
       rgb(0 0 0 /73%) 0px 16px 10px -10px;
